@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2awphl8ure0t"]
+
+[ext_resource type="Script" uid="uid://drkdglml3xd8a" path="res://DisplaySettings.gd" id="1_q5hmi"]
+[ext_resource type="Script" uid="uid://cupiq2oe6fcfd" path="res://ResolutionItem.gd" id="2_xfram"]
+
+[node name="DisplaySettings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_q5hmi")
+
+[node name="ScreenResolution" type="Node" parent="."]
+
+[node name="ResolutionItem" type="Node" parent="ScreenResolution"]
+script = ExtResource("2_xfram")
+
+[node name="OB_SetResolution" type="OptionButton" parent="ScreenResolution"]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 145.0
+offset_right = 256.0
+offset_bottom = 200.0
+allow_reselect = true
+
+[node name="Label" type="Label" parent="ScreenResolution"]
+offset_left = 10.0
+offset_top = 122.0
+offset_right = 147.0
+offset_bottom = 145.0
+text = "Select Resolution:"
+
+[node name="ScreenSelector" type="Node" parent="."]
+
+[node name="OB_SetScreen" type="OptionButton" parent="ScreenSelector"]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 247.0
+offset_bottom = 74.0
+
+[node name="Label" type="Label" parent="ScreenSelector"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 247.0
+offset_bottom = 33.0
+text = "Select Screen to Display Game:"
