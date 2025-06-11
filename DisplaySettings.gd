@@ -34,6 +34,16 @@ enum ASPECT {
 }
 @onready var l_ScaleSelect: Label = %L_ScaleSelect
 @onready var hs_SetScale: HSlider = %HS_SetScale
+
+
+@onready var ob_SetScaleStretchMode: OptionButton = %OB_SetScaleStretchMode
+
+enum STRETCHMODE {
+	FRACTIONAL = 0,
+	INTEGER = 1
+}
+
+
 #endregion
 
 #region: Screen Selection and Window Mode
@@ -84,6 +94,10 @@ func _ready() -> void:
 	
 	l_ScaleSelect.text = "Current Scale Factor: %d" % get_tree().root.content_scale_factor
 	hs_SetScale.drag_ended.connect(_on_HS_SetScale)
+	
+	ob_SetScaleStretchMode.item_selected.connect(_on_OB_SetScaleStretchMode)
+	for i in range(0, STRETCHMODE.size()):
+		ob_SetScaleStretchMode.add_item(STRETCHMODE.keys()[i], STRETCHMODE.values()[i])
 	#endregion
 	
 	#region: Setup Screen Selector and Window Mode
@@ -173,5 +187,14 @@ func _on_OB_SetAspectRatio(index : int) -> void:
 func _on_HS_SetScale(value_changed : bool) -> void:
 	get_tree().root.content_scale_factor = hs_SetScale.value
 	l_ScaleSelect.text = "Current Scale Factor: %.1f" % get_tree().root.content_scale_factor
+
+func _on_OB_SetScaleStretchMode(index : int) -> void:
+	var scale_stretch_mode := ob_SetScaleStretchMode.get_item_id(index)
+	match scale_stretch_mode:
+		STRETCHMODE.FRACTIONAL:
+			get_tree().root.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
+		STRETCHMODE.INTEGER:
+			get_tree().root.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+	print("Current Stretch Scale Mode is: %s" % get_tree().root.content_scale_stretch)
 	
 #endregion

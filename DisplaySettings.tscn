@@ -104,10 +104,10 @@ value = 1.0
 
 [node name="Label3" type="Label" parent="TabContainer/StretchModes"]
 layout_mode = 2
-text = "Select Scale Mode:"
+text = "Select Scale Stretch Mode:"
 
-[node name="OB_SetScaleMode" type="OptionButton" parent="TabContainer/StretchModes"]
-visible = false
+[node name="OB_SetScaleStretchMode" type="OptionButton" parent="TabContainer/StretchModes"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ScreenSelector" type="VBoxContainer" parent="TabContainer"]
